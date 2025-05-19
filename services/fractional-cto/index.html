@@ -30,9 +30,18 @@
 
 
   <script>
-    const defaultTheme = "light";
+    function selectDefaultTheme() {
+      const configuredTheme = "auto";
+
+      if (configuredTheme === "auto") {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "light";
+      }
+      return configuredTheme;
+    }
+
+    const defaultTheme = selectDefaultTheme();
     const isToggleEnabled = true;
-    const userTheme = localStorage.getItem("theme");
+    const userTheme = false;
 
     function setTheme(mode) {
       if (mode === "dark") {
